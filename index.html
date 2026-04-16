@@ -1,17 +1,159 @@
----
-layout: default
-title: "Home"
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bach Do - Home</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-name">Bach Do</a>
+    <a href="index.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="publications.html">Publications</a>
+  </nav>
 
-{% if site.show_excerpts %}
-  {% for post in site.posts %}
-    <article>
-      {% include meta.html post=post %}
-      {{ post.excerpt }}
-      <footer class="button"><a href="{{ post.url | relative_url }}">read more</a></footer>
-    </article>
-  {% endfor %}
-{% else %}
-  {% capture source %}{% include_relative archive.html title="Posts" %}{% endcapture %}
-  {{ source | split: "---" | last }}
-{% endif %}
+  <section id="about" class="flex-container">
+    <div class="left-column">
+      <!-- Replace this file with your real portrait and update the src if desired. -->
+      <img src="images/profile-placeholder.svg" alt="Bach Do" class="profile-picture">
+      <h1 class="portrait-name">Bach Do</h1>
+      <p class="portrait-title">Bayesian optimization • uncertainty quantification • computational mechanics</p>
+
+      <div class="contact-icons">
+        <a href="mailto:dokimbach@gmail.com" title="Email" class="contact-icon">
+          <i class="fas fa-envelope fa-2x"></i>
+        </a>
+        <a href="https://github.com/bachkdo" title="GitHub" target="_blank" rel="noopener noreferrer" class="contact-icon">
+          <i class="fab fa-github fa-2x"></i>
+        </a>
+        <!-- Uncomment after adding your CV file to the repo root. -->
+        <!--
+        <a href="cv.pdf" title="Curriculum Vitae" target="_blank" rel="noopener noreferrer" class="contact-icon">
+          <i class="fas fa-file-pdf fa-2x"></i>
+        </a>
+        -->
+      </div>
+    </div>
+
+    <div class="right-column">
+      <h2>Academic Bio</h2>
+      <p>
+        I work at the intersection of Bayesian optimization, uncertainty quantification, computational mechanics,
+        and AI for engineering. My recent work spans surrogate modeling, multi-fidelity methods, optimization under
+        uncertainty, inverse problems in solid mechanics, and machine learning for engineering design.
+      </p>
+      <p>
+        This version is built as a clean academic landing page in the style of the reference site you shared. It is
+        fully static, easy to edit directly on GitHub, and keeps the content in simple HTML rather than hiding it
+        behind a Jekyll theme.
+      </p>
+
+      <h3>Degrees</h3>
+      <ul class="degrees-list">
+        <li>Ph.D. in Architectural Engineering, Kyoto University</li>
+        <li>M.E. in Structural Engineering, Chulalongkorn University</li>
+        <li>B.E. in Civil Engineering, Ho Chi Minh City University of Technology</li>
+      </ul>
+
+      <div class="helper-note">
+        Update the title line above if you want a current appointment or affiliation shown on the homepage.
+        I left that field general so the page does not go stale.
+      </div>
+    </div>
+  </section>
+
+  <section id="bio">
+    <h2 class="section-title">About Me</h2>
+    <p>
+      My research focuses on making expensive engineering analysis and design more data-efficient, reliable, and
+      interpretable. I am especially interested in Gaussian processes, Bayesian optimization, uncertainty-aware
+      learning, and inverse problems arising in structures, materials, and scientific computing.
+    </p>
+    <p>
+      Beyond methodology, I care about building tools that engineers can actually use: optimization frameworks that
+      work with simulators, multi-fidelity pipelines that reduce cost, and data-driven methods that remain grounded
+      in physical structure.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Research Highlights</h2>
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <h3>Bayesian optimization</h3>
+        <p>
+          Thompson sampling, acquisition design, exact and scalable inner-loop optimization, and robust optimization
+          under uncertainty.
+        </p>
+      </div>
+      <div class="highlight-card">
+        <h3>Multi-fidelity methods</h3>
+        <p>
+          Surrogate models and optimization strategies that combine cheap and expensive information sources to cut
+          computational cost.
+        </p>
+      </div>
+      <div class="highlight-card">
+        <h3>Inverse problems in mechanics</h3>
+        <p>
+          Parameter identification, reliability, and data-assisted modeling for structural and constitutive problems.
+        </p>
+      </div>
+      <div class="highlight-card">
+        <h3>AI for engineering design</h3>
+        <p>
+          Scientific machine learning and data-driven design methods that connect optimization with physical insight.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Selected Publications</h2>
+    <ul class="compact-publication-list">
+      <li>
+        <strong>Optimizing Posterior Samples for Bayesian Optimization via Rootfinding</strong><br>
+        Taiwo A. Adebiyi, Bach Do, Ruda Zhang · ICLR 2025<br>
+        <a class="highlight-link" href="publications.html">View publications page</a>
+      </li>
+      <li>
+        <strong>Multi-fidelity Bayesian Optimization: A Review</strong><br>
+        Bach Do, Ruda Zhang · AIAA Journal, 2025
+      </li>
+      <li>
+        <strong>Epsilon-Greedy Thompson Sampling to Bayesian Optimization</strong><br>
+        Bach Do, Taiwo A. Adebiyi, Ruda Zhang · Journal of Computing and Information Science in Engineering, 2024
+      </li>
+      <li>
+        <strong>Automated Design of Nonreciprocal Thermal Emitters via Bayesian Optimization</strong><br>
+        Bach Do, Sina Jafari Ghalekohneh, Taiwo A. Adebiyi, Bo Zhao, Ruda Zhang · 2024
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="copyright-year"></span> Bach Do. All rights reserved.</p>
+    <p>Last Updated: <span id="last-updated"></span></p>
+  </footer>
+
+  <script>
+    document.querySelectorAll("nav a").forEach(link => {
+      if (link.href === window.location.href) {
+        link.classList.add("active");
+      }
+    });
+
+    document.getElementById("copyright-year").textContent = new Date().getFullYear();
+
+    const lastModified = new Date(document.lastModified);
+    document.getElementById("last-updated").textContent = lastModified.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+  </script>
+</body>
+</html>
